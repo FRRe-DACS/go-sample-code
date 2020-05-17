@@ -6,7 +6,7 @@
 make docker
 ```
 
-## Corren en Kubernetes
+## Desplegar en Kubernetes
 
 ```console
 kubectl apply -f deploy/deployment.yaml
