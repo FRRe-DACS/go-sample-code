@@ -39,7 +39,7 @@ func getAllHospitales(w http.ResponseWriter, r *http.Request) {
 
 func findHospitalByID(w http.ResponseWriter, r *http.Request) {
 	hopitalID := mux.Vars(r)["id"]
-	log.Print("Devolviendo Hospital con ID %v", hopitalID)
+	log.Print("Devolviendo Hospital con ID ", hopitalID)
 	for _, hospital := range hospitales {
 		if hospital.ID == hopitalID {
 			json.NewEncoder(w).Encode(hospital)
