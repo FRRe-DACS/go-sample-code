@@ -1,6 +1,6 @@
 # Ejemplos en Golang para Desarrollo de Aplicaciones Cliente-Servidor
 
-## Contruir los ejemplo
+## Construir la imagen de Docker
 
 ```console
 make docker
