@@ -4,18 +4,29 @@ metadata:
   name: hospital-backend
   labels:
     app: hospital
+    app-role: server
 spec:
   replicas: 1
   selector:
     matchLabels:
       app: hospital
+      app-role: server
   template:
     metadata:
       labels:
         app: hospital
+        app-role: server
     spec:
       containers:
       - name: hospital-backend
         image: frredacs/hospital-server:1.0
         ports:
         - containerPort: 8080
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "500m"
+          limits:
+            memory: "256Mi"
+            cpu: "1"
+

@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hospital-frontend
+  labels:
+    app: hospital
+    app-role: client
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hospital
+      app-role: client
+  template:
+    metadata:
+      labels:
+        app: hospital
+        app-role: client
+    spec:
+      containers:
+      - name: hospital-frontend
+        image: frredacs/hospital-client:1.0
+        ports:
+        - containerPort: 80
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+

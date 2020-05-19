@@ -9,7 +9,8 @@ make docker
 ## Desplegar en Kubernetes
 
 ```console
-kubectl apply -f deploy/deployment.yaml
+kubectl apply -f deploy/backend.yaml
+kubectl apply -f deploy/frontend.yaml
 kubectl apply -f deploy/service.yaml
 ```
 
@@ -22,6 +23,7 @@ curl -X GET ku  http://localhost:8080/hospital
 ## Limpiar
 
 ```console
-kubectl delete -f deploy/deployment.yaml
+kubectl delete -f deploy/backend.yaml
+kubectl delete -f deploy/frontend.yaml
 kubectl delete -f deploy/service.yaml
 ```

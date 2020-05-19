@@ -1,7 +1,32 @@
+
+---
 apiVersion: v1
 kind: Service
 metadata:
-  name: hospital-service
+  name: hospital-backend
+  labels:
+    app.kubernetes.io/name: hospital
+    app: hospital
+    app-role: server
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 8081
+      targetPort: 8080
+      protocol: TCP
+      name: http-rest
+  selector:
+    app: hospital
+    app-role: server
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hospital-frontend
+  labels:
+    app.kubernetes.io/name: hospital
+    app: hospital
+    app-role: client
 spec:
   type: LoadBalancer
   selector:
@@ -9,4 +34,7 @@ spec:
   ports:
     - protocol: TCP
       port: 8080
-      targetPort: 8080
+      targetPort: 80
+  selector:
+    app: hospital
+    app-role: client
