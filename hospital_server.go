@@ -32,14 +32,20 @@ var hospitales = allHospitales{
 	},
 }
 
+func enableCors(w *http.ResponseWriter) {
+	(*w).Header().Set("Access-Control-Allow-Origin", "*")
+}
+
 func getAllHospitales(w http.ResponseWriter, r *http.Request) {
 	log.Print("Devolviendo lista de Hospitales.")
+	enableCors(&w)
 	json.NewEncoder(w).Encode(hospitales)
 }
 
 func findHospitalByID(w http.ResponseWriter, r *http.Request) {
 	hopitalID := mux.Vars(r)["id"]
 	log.Print("Devolviendo Hospital con ID ", hopitalID)
+	enableCors(&w)
 	for _, hospital := range hospitales {
 		if hospital.ID == hopitalID {
 			json.NewEncoder(w).Encode(hospital)
@@ -57,7 +63,7 @@ func createHopital(w http.ResponseWriter, r *http.Request) {
 	json.Unmarshal(reqBody, &newHospital)
 
 	log.Print("Creando Hospital: ", newHospital)
-
+	enableCors(&w)
 	hospitales = append(hospitales, newHospital)
 	w.WriteHeader(http.StatusCreated)
 
@@ -67,6 +73,7 @@ func createHopital(w http.ResponseWriter, r *http.Request) {
 func deleteHopital(w http.ResponseWriter, r *http.Request) {
 	hopitalID := mux.Vars(r)["id"]
 	log.Print("Borriando Hospital con ID ", hopitalID)
+	enableCors(&w)
 	for i, hospital := range hospitales {
 		if hospital.ID == hopitalID {
 			hospitales = append(hospitales[:i], hospitales[i+1:]...)
